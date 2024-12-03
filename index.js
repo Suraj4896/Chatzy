@@ -23,11 +23,13 @@ const databaseURL = process.env.DATABASE_URL;
 
 //using middleware cors and Configuration of cors
 app.use(cors({
-        origin: [process.env.ORIGIN],
+        origin: process.env.ORIGIN || "http://localhost:5175",
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
         credentials: true
     })
 );
+
+app.use("/uploads/profiles", express.static("uploads/profiles"));
 
 //Integrates the cookie-parser middleware into the Express application.
 app.use(cookieParser());
