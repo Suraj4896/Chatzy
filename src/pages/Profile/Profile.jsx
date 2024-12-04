@@ -3,7 +3,7 @@ import { useAppStore } from "@/store";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { colors, getColor } from "@/lib/utils";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,8 @@ import { toast } from "sonner";
 import { apiClient } from "@/lib/api-client";
 import {
   ADD_PROFILE_IMAGE_ROUTE,
+  HOST,
+  REMOVE_PROFILE_IMAGE_ROUTE,
   UPDATE_PROFILE_ROUTE,
 } from "@/utils/constatnts";
 
@@ -32,6 +34,11 @@ const Profile = () => {
       setFirstName(userInfo.firstName);
       setLastName(userInfo.lastName);
       setSelectedColor(userInfo.color);
+    }
+    if (userInfo.image) {
+      console.log("Image URL:", `${HOST}/${userInfo.image}`);
+      console.log("Image State:", image);
+      setImage(`${HOST}/${userInfo.image}`);
     }
   }, [userInfo]);
 
@@ -96,7 +103,20 @@ const Profile = () => {
     }
   };
 
-  const handleDeleteImage = async () => {};
+  const handleDeleteImage = async () => {
+    try {
+      const response = await apiClient.delete(REMOVE_PROFILE_IMAGE_ROUTE, {
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        setUserInfo({ ...userInfo, image: null });
+        toast.success("Image removed succesfully.");
+        setImage(null);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //profile UI
   return (

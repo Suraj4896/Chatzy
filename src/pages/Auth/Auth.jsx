@@ -48,6 +48,8 @@ const Auth = () => {
       }
       return true;
   };
+
+  //handle the login, if login is successful then navigate to chat page otherwise to profile page
   const handleLogin = async () => {
         if(validateLogin()){
           const response = await apiClient.post(LOGIN_ROUTE, {email, password}, {withCredentials: true});
@@ -60,6 +62,7 @@ const Auth = () => {
         }
   }
 
+  //handle signup, if signup is successful then navigate to profile section for making profile 
   const handleSignup = async () => {
         if(validateSignup()){
           const response = await apiClient.post(SIGNUP_ROUTE, {email, password}, {withCredentials: true});
