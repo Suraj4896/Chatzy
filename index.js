@@ -23,7 +23,7 @@ const databaseURL = process.env.DATABASE_URL;
 
 //using middleware cors and Configuration of cors
 app.use(cors({
-        origin: process.env.ORIGIN || 'http://localhost:5176',
+        origin: process.env.ORIGIN || 'http://localhost:5173',
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
         credentials: true
     })
