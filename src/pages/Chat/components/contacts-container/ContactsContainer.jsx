@@ -1,6 +1,7 @@
 import React from "react";
 import logoImage from "@/assets/logo8.png";
 import ProfileInfo from "./components/profile-info/ProfileInfo";
+import NewDm from "./components/new-dm/NewDm";
 
 const ContactsContainer = () => {
   return (
@@ -9,12 +10,13 @@ const ContactsContainer = () => {
         <Logo />
       </div>
       <div className="my-5">
-        <div className="flex items-center justify-center pr-10">
+        <div className="flex items-center justify-center pr-10 gap-24">
           <Title text="Direct Messages" />
+          <NewDm />
         </div>
       </div>
       <div className="my-5">
-        <div className="flex items-center justify-center pr-10">
+        <div className="flex items-center justify-center pr-56">
           <Title text="Groups" />
         </div>
       </div>
