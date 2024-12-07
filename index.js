@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import authRoutes from "./routes/AuthRoutes.js"
+import contactRoutes from "./routes/ContactRoutes.js";
 
 // Configure Environment Variables
 //Purpose: Loads environment variables from a .env file into the process.env object. This allows you to securely use environment-specific configuration (like PORT or DATABASE_URL) without hardcoding them into your application.
@@ -38,6 +39,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/contacts", contactRoutes);
 
 // Start the Server
 const server = app.listen(port, () => {
