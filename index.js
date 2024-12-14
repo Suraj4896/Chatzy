@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import authRoutes from "./routes/AuthRoutes.js"
 import contactRoutes from "./routes/ContactRoutes.js";
+import setupSocket from "./socket.js";
 
 // Configure Environment Variables
 //Purpose: Loads environment variables from a .env file into the process.env object. This allows you to securely use environment-specific configuration (like PORT or DATABASE_URL) without hardcoding them into your application.
@@ -44,7 +45,9 @@ app.use("/api/contacts", contactRoutes);
 // Start the Server
 const server = app.listen(port, () => {
     console.log(`server is running at http://localhost:${port}`);
-})
+});
+
+setupSocket(server);
 
 // Connect to MongoDB
 mongoose.connect(databaseURL).then(() => console.log("DB connection successfull")).catch((err) => console.log(err.message));
