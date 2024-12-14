@@ -84,7 +84,9 @@ const NewDm = () => {
               onChange={(e) => searchContacts(e.target.value)}
             />
           </div>
-          <ScrollArea className="h-[250px]">
+          {
+            searchedContacts.length > 0 && (
+              <ScrollArea className="h-[250px]">
             <div className="flex flex-col gap-5">
               {searchedContacts.map((contact) => (
                 <div
@@ -98,7 +100,7 @@ const NewDm = () => {
                         <AvatarImage
                           src={`${HOST}/${contact.image}`}
                           alt="profile"
-                          className="object-cover w-full h-full bg-black"
+                          className="object-cover w-full h-full bg-black rounded-full"
                         />
                       ) : (
                         <div
@@ -125,8 +127,11 @@ const NewDm = () => {
               ))}
             </div>
           </ScrollArea>
+            )
+          }
+          
           {searchedContacts.length <= 0 && (
-            <div className="flex-1 md:bg-[#181920] md:flex  flex-col justify-center items-center  duration-1000 transition-all pb-16">
+            <div className="flex-1 md:bg-[#181920] md:flex mt-5 md:mt-0 flex-col justify-center items-center  duration-1000 transition-all pb-16">
               <Lottie
                 isClickToPauseDisabled={true}
                 height={100}
