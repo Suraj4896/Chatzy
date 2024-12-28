@@ -8,6 +8,7 @@ import { RiEmojiStickerLine } from "react-icons/ri";
 
 const MessageBar = () => {
   const emojiRef = useRef();
+  const fileInputRef = useRef();
   const socket = useSocket();
   const { selectedChatType, selectedChatData, userInfo } = useAppStore();
 
@@ -42,6 +43,13 @@ const MessageBar = () => {
       });
     }
   };
+
+  const handleAttachmentClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  
 
   return (
     <div className="h-[10vh] bg-[#1c1d25] flex justify-center items-center px-8 mb-6 gap-6">
@@ -81,6 +89,8 @@ const MessageBar = () => {
       </button>
     </div>
   );
-};
+}
+  
+
 
 export default MessageBar;
